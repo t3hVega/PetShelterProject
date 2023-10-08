@@ -18,7 +18,7 @@ import java.util.Collection;
             this.PetshelterprojectService = PetshelterprojectService;
         }
 
-        @GetMapping("/get/{amount}")
+        @GetMapping("/get/{amount}") // GET http://localhost:8080/model/get/5
         public Collection<Animal> getAnimal(@PathVariable int amount) {
             return PetshelterprojectService.getAnimal(amount);
         }

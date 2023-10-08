@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PetshelterprojectRepository extends JpaRepository<Animal, Long> {
-
+    /**
+     * Метод возвращает всех животных по нужному типу
+     * @return
+     */
     List<Animal> findAllByAnimal();
 }
