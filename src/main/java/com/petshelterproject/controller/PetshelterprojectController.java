@@ -19,7 +19,7 @@ import java.util.Collection;
         }
 
         @GetMapping("/get/{amount}")
-        public Collection<Animal> getModel(@PathVariable int amount) {
+        public Collection<Animal> getAnimal(@PathVariable int amount) {
             return PetshelterprojectService.getAnimal(amount);
         }
     }
