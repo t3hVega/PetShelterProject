@@ -18,6 +18,11 @@ public class TelegramMessageSender {
         this.telegramBot = telegramBot;
     }
 
+    /**
+     * Метод отправляет сообщение в чат по его id с задаваемым текстом
+     * @param chatId
+     * @param messageText
+     */
     public void send (Long chatId, String messageText) {
         SendMessage message = new SendMessage(chatId, messageText);
         SendResponse response = telegramBot.execute(message);
