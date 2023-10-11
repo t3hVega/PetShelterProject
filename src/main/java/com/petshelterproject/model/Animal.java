@@ -8,10 +8,21 @@ public class Animal {
 
     public int age;
 
-    public Animal(String typeOfAnimal, String gender, int age) {
+    public KindOfAnimal getKindOfAnimal() {
+        return kindOfAnimal;
+    }
+
+    public void setKindOfAnimal(KindOfAnimal kindOfAnimal) {
+        this.kindOfAnimal = kindOfAnimal;
+    }
+
+    private KindOfAnimal kindOfAnimal;
+
+    public Animal(String typeOfAnimal, String gender, int age, KindOfAnimal kindOfAnimal) {
         this.typeOfAnimal = typeOfAnimal;
         this.gender = gender;
         this.age = age;
+        this.kindOfAnimal = kindOfAnimal;
     }
 
     public String getTypeOfAnimal() {
