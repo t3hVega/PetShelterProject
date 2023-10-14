@@ -8,17 +8,17 @@ public class Animal {
 
     public int age;
 
-    public KindOfAnimal getKindOfAnimal() {
+    public String getKindOfAnimal() {
         return kindOfAnimal;
     }
 
     public void setKindOfAnimal(KindOfAnimal kindOfAnimal) {
-        this.kindOfAnimal = kindOfAnimal;
+        this.kindOfAnimal = String.valueOf(kindOfAnimal);
     }
 
-    private KindOfAnimal kindOfAnimal;
+    private String kindOfAnimal;
 
-    public Animal(String typeOfAnimal, String gender, int age, KindOfAnimal kindOfAnimal) {
+    public Animal(String typeOfAnimal, String gender, int age, String kindOfAnimal) {
         this.typeOfAnimal = typeOfAnimal;
         this.gender = gender;
         this.age = age;
