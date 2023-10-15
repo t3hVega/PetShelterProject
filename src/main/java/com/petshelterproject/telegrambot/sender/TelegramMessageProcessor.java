@@ -30,6 +30,13 @@ public class TelegramMessageProcessor {
         sendMessage.setText(messageText);
         return sendMessage;
     }
+
+    /**
+     * Метод возвращает меню в чат к обратившемуся пользователю
+     * Пока что в состоянии заглушки, требует расширения для "модульности"
+     * @param chatId
+     * @return
+     */
     public SendMessage firstStageMenu (Long chatId) {
         logger.info("Открываем меню для чата " + chatId);
         SendMessage firstStageMenuMessage = new SendMessage();
