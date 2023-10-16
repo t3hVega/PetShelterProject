@@ -2,12 +2,14 @@ package com.petshelterproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-public class PetshelterprojectApplication {
+@EnableScheduling
+public class PetShelterProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PetshelterprojectApplication.class, args);
+		SpringApplication.run(PetShelterProjectApplication.class, args);
 	}
 
 }
