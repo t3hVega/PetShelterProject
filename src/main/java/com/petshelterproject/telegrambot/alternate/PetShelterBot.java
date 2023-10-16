@@ -47,7 +47,7 @@ public class PetShelterBot extends TelegramLongPollingBot {
                 }
                 case ("\uD83D\uDC31 Кошку"): {
                     try {
-                        sendHideKeyboard(chatId, messageId, "Адрес приюта для кошек будет передан в скором времени");
+                        execute(messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку"));
                     } catch (TelegramApiException e) {
                         throw new RuntimeException(e);
                     }
@@ -55,7 +55,15 @@ public class PetShelterBot extends TelegramLongPollingBot {
                 }
                 case ("\uD83D\uDC36 Собаку"): {
                     try {
-                        sendHideKeyboard(chatId, messageId, "Адрес приюта для собак будет передан в скором времени");
+                        execute(messageProcessor.secondStageMenu(chatId, "\uD83D\uDC36 Собаку"));
+                    } catch (TelegramApiException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+                case ("ℹ\uFE0F Узнать информацию о приюте"): {
+                    try {
+                        execute(messageProcessor.shelterInfoMenu(chatId));
                     } catch (TelegramApiException e) {
                         throw new RuntimeException(e);
                     }

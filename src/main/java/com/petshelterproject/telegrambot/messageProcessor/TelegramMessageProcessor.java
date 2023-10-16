@@ -34,10 +34,10 @@ public class TelegramMessageProcessor {
      * Метод возвращает меню в чат к обратившемуся пользователю
      * Пока что в состоянии заглушки, требует расширения для "модульности"
      * @param chatId
-     * @return
+     * @return firstStageMenuMessage
      */
     public SendMessage firstStageMenu (Long chatId) {
-        logger.info("Открываем меню для чата " + chatId);
+        logger.info("Открываем меню приветствия для чата " + chatId);
         SendMessage firstStageMenuMessage = new SendMessage();
         firstStageMenuMessage.setChatId(chatId.toString());
         firstStageMenuMessage.setText("Вас приветствует бот-ассистент для усыновления животных. \n" +
@@ -46,12 +46,70 @@ public class TelegramMessageProcessor {
             new KeyboardButton("\uD83D\uDC31 Кошку"),
             new KeyboardButton("\uD83D\uDC36 Собаку")
         );
-        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+        List<List<KeyboardButton>> buttonsToAdd = List.of(
                 firstRow
         );
         firstStageMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return firstStageMenuMessage;
 
+    }
+
+    public SendMessage secondStageMenu (Long chatId, String reply) {
+        logger.info("Открываем меню приюта для чата " + chatId);
+        SendMessage secondStageMenuMessage = new SendMessage();
+        secondStageMenuMessage.setChatId(chatId.toString());
+        if (reply.equals("\uD83D\uDC36 Собаку")) {
+            secondStageMenuMessage.setText("Вас приветствует приют для собак, выберите нужную вам опцию");
+        } else secondStageMenuMessage.setText("Вас приветствует приют для кошек, выберите нужную вам опцию");
+
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("ℹ\uFE0F Узнать информацию о приюте")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("\uD83D\uDC3E Прислать отчет о питомце"),
+                new KeyboardButton("❓ Как забрать животное из приюта")
+                );
+        List<KeyboardButton> thirdRow = List.of(
+                new KeyboardButton("✋ Позвать волонтера")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow,
+                thirdRow
+        );
+        secondStageMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return secondStageMenuMessage;
+    }
+
+    public SendMessage shelterInfoMenu (Long chatId) {
+        logger.info("Открываем меню информации о приюте для чата " + chatId);
+        SendMessage shelterInfoMenuMessage = new SendMessage();
+        shelterInfoMenuMessage.setChatId(chatId.toString());
+        shelterInfoMenuMessage.setText("Вас приветствует приют для собак, выберите нужную вам опцию");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("\uD83D\uDD57 Расписание работы приюта, адрес и схема проезда.")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("\uD83D\uDE98 Контактные данные охраны для оформления пропуска на машину")
+        );
+        List<KeyboardButton> thirdRow = List.of(
+                new KeyboardButton("\uD83D\uDED1 Общие рекомендации о технике безопасности на территории приюта")
+
+        );
+        List<KeyboardButton> fourthRow = List.of(
+                new KeyboardButton("\uD83D\uDCDD Внести контактные данные для связи"),
+                new KeyboardButton("✋ Позвать волонтера")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow,
+                thirdRow,
+                fourthRow
+        );
+        shelterInfoMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return shelterInfoMenuMessage;
     }
 
     private ReplyKeyboardMarkup replyKeyboardMarkup(List<List<KeyboardButton>> buttonsToAdd) {
