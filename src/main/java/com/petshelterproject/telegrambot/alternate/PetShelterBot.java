@@ -1,7 +1,7 @@
 package com.petshelterproject.telegrambot.alternate;
 
 import com.petshelterproject.telegrambot.configuration.BotConfig;
-import com.petshelterproject.telegrambot.sender.TelegramMessageProcessor;
+import com.petshelterproject.telegrambot.messageProcessor.TelegramMessageProcessor;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
