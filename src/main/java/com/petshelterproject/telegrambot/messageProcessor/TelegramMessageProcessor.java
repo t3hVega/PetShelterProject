@@ -14,7 +14,6 @@ import java.util.List;
 
 @Component
 public class TelegramMessageProcessor {
-
     private final Logger logger = LoggerFactory.getLogger(TelegramMessageProcessor.class);
 
     /**
