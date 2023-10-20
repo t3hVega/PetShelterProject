@@ -179,7 +179,11 @@ public class TelegramMessageProcessor {
                 firstRow,
                 secondRow,
                 thirdRow,
-                fourthRow
+                fourthRow,
+                fifthRow,
+                sixthRow,
+                seventhRow,
+                eighthRow
         );
         catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return catAdoptionAssistMenuMessage;
