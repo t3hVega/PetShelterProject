@@ -22,6 +22,9 @@ public class TelegramMessageProcessor<buttonsToAdd> {
     private final Logger logger = LoggerFactory.getLogger(TelegramMessageProcessor.class);
     private UCharacterDirection chatId;
 
+    public TelegramMessageProcessor() {
+    }
+
     /**
      * Метод отправляет сообщение в чат по его id с задаваемым текстом
      *
@@ -188,9 +191,6 @@ public class TelegramMessageProcessor<buttonsToAdd> {
         dogAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup());
         return dogAdoptionAssistMenuMessage;
     }
-
-
-    private List<KeyboardButton> firstRow;
 
     ReplyKeyboard replyKeyboardMarkup(buttonsToAdd) {
         return firstStageMenu().getReplyMarkup();
