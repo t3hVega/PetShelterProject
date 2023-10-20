@@ -40,7 +40,7 @@ public class PetShelterBot extends TelegramLongPollingBot {
             switch (updateMessageText) {
                 case ("/start"): {
                     try {
-                        execute(messageProcessor.firstStageMenu(chatId));
+                        execute(messageProcessor.firstStageMenu());
                     } catch (TelegramApiException e) {
                     }
                     break;
