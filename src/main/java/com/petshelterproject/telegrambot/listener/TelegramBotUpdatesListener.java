@@ -1,5 +1,6 @@
 package com.petshelterproject.telegrambot.listener;
 
+
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Message;
@@ -15,10 +16,10 @@ import java.util.List;
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
 
-    private Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
+    private final Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
 
-    private TelegramBot telegramBot;
-    private TelegramMessageSender telegramMessageSender;
+    private final TelegramBot telegramBot;
+    private final TelegramMessageSender telegramMessageSender;
 
     public TelegramBotUpdatesListener (
             TelegramBot telegramBot,
@@ -41,14 +42,10 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             String text = update.message().text();
             long chatId = update.message().chat().id();
             switch (text) {
-                case "/placeholder1":
-                    telegramMessageSender.send(chatId, "Заглушка 1");
-                    break;
-                case "/placeholder2":
-                    telegramMessageSender.send(chatId, "Заглушка 2");
-                    break;
-                default:
-
+                case "/placeholder1" -> telegramMessageSender.send(chatId, "Заглушка 1");
+                case "/placeholder2" -> telegramMessageSender.send(chatId, "Заглушка 2");
+                default -> {
+                }
             }
 
         });
