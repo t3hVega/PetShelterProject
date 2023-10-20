@@ -163,13 +163,13 @@ public class TelegramMessageProcessor {
                 new KeyboardButton("\uD83D\uDD57 Список рекомендаций по обустройству дома для взрослого животного")
         );
         List<KeyboardButton> fifthRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 Список рекомендаций по обустройству дома для щенка")
+                new KeyboardButton("\uD83D\uDE98 Список рекомендаций по обустройству дома для котенка")
         );
         List<KeyboardButton> sixthRow = List.of(
                 new KeyboardButton("\uD83D\uDED1 Список рекомендаций по обустройству дома для животного с ограниченными возможностями (зрение, передвижение)")
         );
         List<KeyboardButton> seventhRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 список причин, почему могут отказать и не дать забрать собаку из приюта  ")
+                new KeyboardButton("\uD83D\uDE98 список причин, почему могут отказать и не дать забрать кошку из приюта  ")
         );
         List<KeyboardButton> eighthRow = List.of(
                 new KeyboardButton("\uD83D\uDCDD Принять и записать контактные данные для связи"),
