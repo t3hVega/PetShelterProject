@@ -3,6 +3,7 @@ package com.petshelterproject.telegrambot.messageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.send.SendAnimation;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
@@ -203,4 +204,7 @@ public class TelegramMessageProcessor {
         return replyKeyboardMarkup;
     }
 
+    public SendAnimation firstStageMenu() {
+        return null;
+    }
 }
