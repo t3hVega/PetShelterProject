@@ -114,11 +114,11 @@ public class TelegramMessageProcessor {
 
 
 
-    public SendMessage catShelterInfoMenu (Long chatId) {
+    public SendMessage dogShelterInfoMenu (Long chatId) {
         logger.info("Открываем меню информации о кошачьем приюте для чата " + chatId);
-        SendMessage catShelterInfoMenuMessage = new SendMessage();
-        catShelterInfoMenuMessage.setChatId(chatId.toString());
-        catShelterInfoMenuMessage.setText("Вас приветствует приют для кошек, выберите нужную вам опцию");
+        SendMessage dogShelterInfoMenuMessage = new SendMessage();
+        dogShelterInfoMenuMessage.setChatId(chatId.toString());
+        dogShelterInfoMenuMessage.setText("Вас приветствует приют для собак, выберите нужную вам опцию");
         List<KeyboardButton> firstRow = List.of(
                 new KeyboardButton("\uD83D\uDD57 Расписание работы приюта, адрес и схема проезда.")
         );
@@ -140,16 +140,16 @@ public class TelegramMessageProcessor {
                 thirdRow,
                 fourthRow
         );
-        catShelterInfoMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
-        return catShelterInfoMenuMessage;
+        dogShelterInfoMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return dogShelterInfoMenuMessage;
     }
 
 
-    public SendMessage catAdoptionAssistMenu (Long chatId) {
+    public SendMessage dogAdoptionAssistMenu (Long chatId) {
         logger.info("Открываем меню - как взять животное из приюта " + chatId);
-        SendMessage catAdoptionAssistMenuMessage = new SendMessage();
-        catAdoptionAssistMenuMessage.setChatId(chatId.toString());
-        catAdoptionAssistMenuMessage.setText("Списки причин за и против , выберите нужную вам опцию");
+        SendMessage dogAdoptionAssistMenuMessage = new SendMessage();
+        dogAdoptionAssistMenuMessage.setChatId(chatId.toString());
+        dogAdoptionAssistMenuMessage.setText("Списки причин за и против , выберите нужную вам опцию");
         List<KeyboardButton> firstRow = List.of(
                 new KeyboardButton("\uD83D\uDD57 Список рекомендаций по транспортировке животного")
         );
@@ -163,13 +163,13 @@ public class TelegramMessageProcessor {
                 new KeyboardButton("\uD83D\uDD57 Список рекомендаций по обустройству дома для взрослого животного")
         );
         List<KeyboardButton> fifthRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 Список рекомендаций по обустройству дома для котенка")
+                new KeyboardButton("\uD83D\uDE98 Список рекомендаций по обустройству дома для щенка")
         );
         List<KeyboardButton> sixthRow = List.of(
                 new KeyboardButton("\uD83D\uDED1 Список рекомендаций по обустройству дома для животного с ограниченными возможностями (зрение, передвижение)")
         );
         List<KeyboardButton> seventhRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 список причин, почему могут отказать и не дать забрать кошку из приюта  ")
+                new KeyboardButton("\uD83D\uDE98 список причин, почему могут отказать и не дать забрать собаку из приюта  ")
         );
         List<KeyboardButton> eighthRow = List.of(
                 new KeyboardButton("\uD83D\uDCDD Принять и записать контактные данные для связи"),
@@ -186,8 +186,8 @@ public class TelegramMessageProcessor {
                 seventhRow,
                 eighthRow
         );
-        catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
-        return catAdoptionAssistMenuMessage;
+        dogAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return dogAdoptionAssistMenuMessage;
     }
 
 

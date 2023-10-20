@@ -61,4 +61,6 @@ public class TelegramMessageSender {
 
     }
 
+    public void send(long chatId, String s) {
+    }
 }
