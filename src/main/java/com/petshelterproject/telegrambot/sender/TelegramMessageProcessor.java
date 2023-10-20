@@ -82,12 +82,8 @@ public class TelegramMessageProcessor<buttonsToAdd> {
     }
     private List<KeyboardButton> firstRow;
 
-    <buttonsToAdd> ReplyKeyboard replyKeyboardMarkup(buttonsToAdd) {
+    private ReplyKeyboard replyKeyboardMarkup(buttonsToAdd) {
         return firstStageMenu().getReplyMarkup();
-    }
-
-    private SendMessage firstStageMenu() {
-        return null;
     }
 
     public SendMessage secondStageMenu (Long chatId, String reply) {
