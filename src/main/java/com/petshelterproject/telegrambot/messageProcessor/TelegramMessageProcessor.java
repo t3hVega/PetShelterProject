@@ -85,7 +85,7 @@ public class TelegramMessageProcessor {
         logger.info("Открываем меню информации о приюте для чата " + chatId);
         SendMessage shelterInfoMenuMessage = new SendMessage();
         shelterInfoMenuMessage.setChatId(chatId.toString());
-        shelterInfoMenuMessage.setText("Вас приветствует приют для собак, выберите нужную вам опцию");
+        shelterInfoMenuMessage.setText("Выберите нужную вам опцию");
         List<KeyboardButton> firstRow = List.of(
                 new KeyboardButton("\uD83D\uDD57 Расписание работы приюта, адрес и схема проезда.")
         );
@@ -112,65 +112,29 @@ public class TelegramMessageProcessor {
     }
 
 
-
-    public SendMessage catShelterInfoMenu (Long chatId) {
-        logger.info("Открываем меню информации о кошачьем приюте для чата " + chatId);
-        SendMessage catShelterInfoMenuMessage = new SendMessage();
-        catShelterInfoMenuMessage.setChatId(chatId.toString());
-        catShelterInfoMenuMessage.setText("Вас приветствует приют для кошек, выберите нужную вам опцию");
-        List<KeyboardButton> firstRow = List.of(
-                new KeyboardButton("\uD83D\uDD57 Расписание работы приюта, адрес и схема проезда.")
-        );
-        List<KeyboardButton> secondRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 Контактные данные охраны для оформления пропуска на машину")
-        );
-        List<KeyboardButton> thirdRow = List.of(
-                new KeyboardButton("\uD83D\uDED1 Общие рекомендации о технике безопасности на территории приюта")
-
-        );
-        List<KeyboardButton> fourthRow = List.of(
-                new KeyboardButton("\uD83D\uDCDD Внести контактные данные для связи"),
-                new KeyboardButton("✋ Позвать волонтера")
-        );
-
-        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
-                firstRow,
-                secondRow,
-                thirdRow,
-                fourthRow
-        );
-        catShelterInfoMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
-        return catShelterInfoMenuMessage;
-    }
-
-
     public SendMessage catAdoptionAssistMenu (Long chatId) {
         logger.info("Открываем меню - как взять животное из приюта " + chatId);
         SendMessage catAdoptionAssistMenuMessage = new SendMessage();
         catAdoptionAssistMenuMessage.setChatId(chatId.toString());
         catAdoptionAssistMenuMessage.setText("Списки причин за и против , выберите нужную вам опцию");
         List<KeyboardButton> firstRow = List.of(
-                new KeyboardButton("\uD83D\uDD57 Список рекомендаций по транспортировке животного")
+                new KeyboardButton("\uD83E\uDDF0 Рекомендации по транспортировке животного"),
+                new KeyboardButton("Правила знакомства с животным до того, как забрать его из приюта")
         );
         List<KeyboardButton> secondRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 Правила знакомства с животным до того, как забрать его из приюта")
+                new KeyboardButton("\uD83D\uDDD2 Документы, необходимых для того, чтобы взять животное из приюта")
         );
         List<KeyboardButton> thirdRow = List.of(
-                new KeyboardButton("\uD83D\uDED1 Список документов, необходимых для того, чтобы взять животное из приюта")
+                new KeyboardButton("Рекомендации по обустройству дома для взрослого животного"),
+                new KeyboardButton("Рекомендации по обустройству дома для котенка")
         );
         List<KeyboardButton> fourthRow = List.of(
-                new KeyboardButton("\uD83D\uDD57 Список рекомендаций по обустройству дома для взрослого животного")
+                new KeyboardButton("\uD83E\uDDBD Рекомендаций по обустройству дома для животного с ограниченными возможностями (зрение, передвижение)")
         );
         List<KeyboardButton> fifthRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 Список рекомендаций по обустройству дома для котенка")
+                new KeyboardButton("\uD83D\uDEAB Причины, почему могут отказать и не дать забрать кошку из приюта  ")
         );
         List<KeyboardButton> sixthRow = List.of(
-                new KeyboardButton("\uD83D\uDED1 Список рекомендаций по обустройству дома для животного с ограниченными возможностями (зрение, передвижение)")
-        );
-        List<KeyboardButton> seventhRow = List.of(
-                new KeyboardButton("\uD83D\uDE98 список причин, почему могут отказать и не дать забрать кошку из приюта  ")
-        );
-        List<KeyboardButton> eighthRow = List.of(
                 new KeyboardButton("\uD83D\uDCDD Принять и записать контактные данные для связи"),
                 new KeyboardButton("✋ Позвать волонтера")
         );
@@ -181,9 +145,46 @@ public class TelegramMessageProcessor {
                 thirdRow,
                 fourthRow,
                 fifthRow,
-                sixthRow,
-                seventhRow,
-                eighthRow
+                sixthRow
+        );
+        catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return catAdoptionAssistMenuMessage;
+    }
+
+    public SendMessage dogAdoptionAssistMenu (Long chatId) {
+        logger.info("Открываем меню - как взять животное из приюта " + chatId);
+        SendMessage catAdoptionAssistMenuMessage = new SendMessage();
+        catAdoptionAssistMenuMessage.setChatId(chatId.toString());
+        catAdoptionAssistMenuMessage.setText("Списки причин за и против , выберите нужную вам опцию");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("\uD83E\uDDF0 Рекомендации по транспортировке животного"),
+                new KeyboardButton("Правила знакомства с животным до того, как забрать его из приюта")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("\uD83D\uDDD2 Документы, необходимых для того, чтобы взять животное из приюта")
+        );
+        List<KeyboardButton> thirdRow = List.of(
+                new KeyboardButton("Рекомендации по обустройству дома для взрослого животного"),
+                new KeyboardButton("Рекомендации по обустройству дома для щенка")
+        );
+        List<KeyboardButton> fourthRow = List.of(
+                new KeyboardButton("\uD83E\uDDBD Рекомендаций по обустройству дома для животного с ограниченными возможностями (зрение, передвижение)")
+        );
+        List<KeyboardButton> fifthRow = List.of(
+                new KeyboardButton("\uD83D\uDEAB Причины, почему могут отказать и не дать забрать собаку из приюта  ")
+        );
+        List<KeyboardButton> sixthRow = List.of(
+                new KeyboardButton("\uD83D\uDCDD Принять и записать контактные данные для связи"),
+                new KeyboardButton("✋ Позвать волонтера")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow,
+                thirdRow,
+                fourthRow,
+                fifthRow,
+                sixthRow
         );
         catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return catAdoptionAssistMenuMessage;
