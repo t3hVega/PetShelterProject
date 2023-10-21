@@ -138,6 +138,9 @@ public class TelegramMessageProcessor {
                 new KeyboardButton("\uD83D\uDCDD Принять и записать контактные данные для связи"),
                 new KeyboardButton("✋ Позвать волонтера")
         );
+        List<KeyboardButton> seventhRow = List.of(
+                new KeyboardButton("⬅\uFE0F Вернуться в предыдущее меню")
+        );
 
         List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
                 firstRow,
@@ -145,7 +148,8 @@ public class TelegramMessageProcessor {
                 thirdRow,
                 fourthRow,
                 fifthRow,
-                sixthRow
+                sixthRow,
+                seventhRow
         );
         catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return catAdoptionAssistMenuMessage;
@@ -177,6 +181,9 @@ public class TelegramMessageProcessor {
                 new KeyboardButton("\uD83D\uDCDD Принять и записать контактные данные для связи"),
                 new KeyboardButton("✋ Позвать волонтера")
         );
+        List<KeyboardButton> seventhRow = List.of(
+                new KeyboardButton("⬅\uFE0F Вернуться в предыдущее меню")
+        );
 
         List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
                 firstRow,
@@ -184,7 +191,8 @@ public class TelegramMessageProcessor {
                 thirdRow,
                 fourthRow,
                 fifthRow,
-                sixthRow
+                sixthRow,
+                seventhRow
         );
         catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return catAdoptionAssistMenuMessage;
