@@ -42,8 +42,8 @@ public class TelegramMessageProcessor {
         firstStageMenuMessage.setText("Вас приветствует бот-ассистент для усыновления животных. \n" +
                 "1. Выберите животного, которого вы хотите усыновить");
         List<KeyboardButton> firstRow = Arrays.asList(
-            new KeyboardButton("\uD83D\uDC31 Кошку"),
-            new KeyboardButton("\uD83D\uDC36 Собаку")
+                new KeyboardButton("\uD83D\uDC31 Кошку"),
+                new KeyboardButton("\uD83D\uDC36 Собаку")
         );
         List<List<KeyboardButton>> buttonsToAdd = List.of(
                 firstRow
@@ -67,7 +67,7 @@ public class TelegramMessageProcessor {
         List<KeyboardButton> secondRow = List.of(
                 new KeyboardButton("\uD83D\uDC3E Прислать отчет о питомце"),
                 new KeyboardButton("❓ Как забрать животное из приюта")
-                );
+        );
         List<KeyboardButton> thirdRow = List.of(
                 new KeyboardButton("✋ Позвать волонтера")
         );
