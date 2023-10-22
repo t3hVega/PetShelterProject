@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PetshelterprojectRepository extends JpaRepository<Animal, Long> {
+public interface AnimalRepository extends JpaRepository<Animal, Long> {
     /**
      * Метод возвращает всех животных по нужному типу
      * @return
      */
-    List<Animal> findAllByAnimal();
+    List<Animal> findAllByIsCat(boolean isCat);
+    List<Animal> findAllByIsMale(boolean isMale);
 }
