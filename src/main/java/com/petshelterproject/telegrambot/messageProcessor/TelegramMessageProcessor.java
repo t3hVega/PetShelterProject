@@ -203,4 +203,7 @@ public class TelegramMessageProcessor {
         return replyKeyboardMarkup;
     }
 
+    public SendMessage dogAdoptionAssistMenu(Long chatId) {
+        return null;
+    }
 }
