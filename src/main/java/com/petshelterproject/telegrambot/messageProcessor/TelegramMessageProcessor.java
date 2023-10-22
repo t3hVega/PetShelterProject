@@ -100,12 +100,16 @@ public class TelegramMessageProcessor {
                 new KeyboardButton("\uD83D\uDCDD Внести контактные данные для связи"),
                 new KeyboardButton("✋ Позвать волонтера")
         );
+        List<KeyboardButton> fifthRow = List.of(
+                new KeyboardButton("⬅\uFE0F Вернуться в предыдущее меню")
+        );
 
         List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
                 firstRow,
                 secondRow,
                 thirdRow,
-                fourthRow
+                fourthRow,
+                fifthRow
         );
         shelterInfoMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return shelterInfoMenuMessage;
@@ -196,6 +200,26 @@ public class TelegramMessageProcessor {
         );
         catAdoptionAssistMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return catAdoptionAssistMenuMessage;
+    }
+
+    public SendMessage forcedApplyMenu(Long chatId) {
+        logger.info("Открываем форсированное меню регистрации для чата " + chatId);
+        SendMessage forcedApplyMenuMessage = new SendMessage();
+        forcedApplyMenuMessage.setChatId(chatId.toString());
+        forcedApplyMenuMessage.setText("Вы не были найдены в базе потенциальных хозяинов. Не желаете передать данные для связи с вами?");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("✅ Да, записать мои контактные данные для связи")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("❌ Нет, вернуться в предыдущее меню")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow
+        );
+        forcedApplyMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return forcedApplyMenuMessage;
     }
 
 

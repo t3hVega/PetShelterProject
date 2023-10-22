@@ -1,6 +1,7 @@
 package com.petshelterproject.telegrambot.bot;
 
 import com.petshelterproject.model.User;
+import com.petshelterproject.repository.AdopterRepository;
 import com.petshelterproject.repository.UserRepository;
 import com.petshelterproject.telegrambot.configuration.BotConfig;
 import com.petshelterproject.telegrambot.messageProcessor.TelegramMessageProcessor;
@@ -26,6 +27,9 @@ public class PetShelterBot extends TelegramLongPollingBot {
     private TelegramUpdateProcessor updateProcessor;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AdopterRepository adopterRepository;
 
     @Override
     public String getBotUsername() {
@@ -55,7 +59,7 @@ public class PetShelterBot extends TelegramLongPollingBot {
                     }
                     else {
                         try {
-                            execute(updateProcessor.revert(userRepository.findByChatId(chatId)));
+                            execute(updateProcessor.revert(chatId));
                         } catch (TelegramApiException e) {
                             throw new RuntimeException(e);
                         }
@@ -69,6 +73,15 @@ public class PetShelterBot extends TelegramLongPollingBot {
                     }
                     break;
                 }
+                case ("⬅\uFE0F Вернуться в предыдущее меню"), ("❌ Нет, вернуться в предыдущее меню"): {
+                    try {
+                        execute(updateProcessor.back(chatId));
+                    } catch (TelegramApiException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+
                 case ("\uD83D\uDC31 Кошку"): {
                     try {
                         execute(messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку"));
@@ -118,6 +131,20 @@ public class PetShelterBot extends TelegramLongPollingBot {
                         } catch (TelegramApiException e) {
                         throw new RuntimeException(e);
                         }
+                    userStatusUpdate(
+                            chatId,
+                            userRepository.findByChatId(chatId).getIsInCatShelter(),
+                            updateMessageText);
+                    break;
+                }
+                case ("\uD83D\uDC3E Прислать отчет о питомце"): {
+                    if(adopterRepository.findByChatId(chatId) == null) {
+                        try {
+                            execute(messageProcessor.forcedApplyMenu(chatId));
+                        } catch (TelegramApiException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                     userStatusUpdate(
                             chatId,
                             userRepository.findByChatId(chatId).getIsInCatShelter(),

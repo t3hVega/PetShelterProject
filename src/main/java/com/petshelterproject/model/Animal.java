@@ -1,44 +1,64 @@
 package com.petshelterproject.model;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "animals")
 public class Animal {
-    public String typeOfAnimal;
-    public String gender;
 
-    public int age;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private boolean isCat;
+    private boolean isMale;
+    private int age;
+    private String notes;
 
-    public String getKindOfAnimal() {
-        return kindOfAnimal;
-    }
-
-    public void setKindOfAnimal(KindOfAnimal kindOfAnimal) {
-        this.kindOfAnimal = String.valueOf(kindOfAnimal);
-    }
-
-    private String kindOfAnimal;
-
-    public Animal(String typeOfAnimal, String gender, int age, String kindOfAnimal) {
-        this.typeOfAnimal = typeOfAnimal;
-        this.gender = gender;
+    public Animal(String name, boolean isCat, boolean isMale, int age, String notes) {
+        this.name = name;
+        this.isCat = isCat;
+        this.isMale = isMale;
         this.age = age;
-        this.kindOfAnimal = kindOfAnimal;
+        this.notes = notes;
     }
 
-    public String getTypeOfAnimal() {
-        return typeOfAnimal;
+    public Animal() {
+
     }
 
-    public void setTypeOfAnimal(String typeOfAnimal) {
-        this.typeOfAnimal = typeOfAnimal;
+    public Long getId() {
+        return id;
     }
 
-    public String getGender() {
-        return gender;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean getIsCat() {
+        return isCat;
+    }
+
+    public void setIsCat(boolean isCat) {
+        this.isCat = isCat;
+    }
+
+    public boolean getIsMale() {
+        return isMale;
+    }
+
+    public void setIsMale(boolean male) {
+        this.isMale = male;
     }
 
     public int getAge() {
@@ -49,16 +69,36 @@ public class Animal {
         this.age = age;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return age == animal.age && Objects.equals(typeOfAnimal, animal.typeOfAnimal) && Objects.equals(gender, animal.gender);
+        return isCat == animal.isCat && isMale == animal.isMale && age == animal.age && Objects.equals(id, animal.id) && Objects.equals(name, animal.name) && Objects.equals(notes, animal.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(typeOfAnimal, gender, age);
+        return Objects.hash(id, name, isCat, isMale, age, notes);
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isCat=" + isCat +
+                ", isMale=" + isMale +
+                ", age=" + age +
+                ", notes='" + notes + '\'' +
+                '}';
     }
 }
