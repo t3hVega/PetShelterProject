@@ -1,14 +1,8 @@
 package com.petshelterproject.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
 public enum KindOfAnimal {
-
-    CAT("Марсик"), DOG("Тузик"), BIRD("Вуди");
-
+    MALE_CAT("Маркис"), FEMALE_CAT("Сима"), MALE_DOG("Тузик"), FEMALE_DOG("Данка");
     private final String code;
-
     public String getCode() {
         return code;
     }

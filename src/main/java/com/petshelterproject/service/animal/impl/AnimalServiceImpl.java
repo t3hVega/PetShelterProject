@@ -1,6 +1,7 @@
 package com.petshelterproject.service.animal.impl;
 
 import com.petshelterproject.model.Animal;
+import com.petshelterproject.model.KindOfAnimal;
 import com.petshelterproject.repository.AnimalRepository;
 import com.petshelterproject.service.animal.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,9 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public List<Animal> getAllByKind(boolean isCat) {
-        return animalRepository.findAllByIsCat(isCat);
+    public List<Animal> getAllByKind(KindOfAnimal kind) {
+        return animalRepository.findAllByKind(kind);
     }
 
-    @Override
-    public List<Animal> getAllByGender(boolean isMale) {
-        return animalRepository.findAllByIsMale(isMale);
-    }
 
 }

@@ -1,6 +1,7 @@
 package com.petshelterproject.repository;
 
 import com.petshelterproject.model.Animal;
+import com.petshelterproject.model.KindOfAnimal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,5 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
      * Метод возвращает всех животных по нужному типу
      * @return
      */
-    List<Animal> findAllByIsCat(boolean isCat);
-    List<Animal> findAllByIsMale(boolean isMale);
+    List<Animal> findAllByKind(KindOfAnimal kind);
 }
