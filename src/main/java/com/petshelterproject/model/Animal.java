@@ -12,16 +12,16 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private boolean isCat;
-    private boolean isMale;
+    private KindOfAnimal kind;
     private int age;
     private String notes;
 
-    public Animal(String name, boolean isCat, boolean isMale, int age, String notes) {
+
+
+    public Animal(String name, KindOfAnimal kind, int age, String notes) {
         this.name = name;
-        this.isCat = isCat;
-        this.isMale = isMale;
         this.age = age;
+        this.kind = kind;
         this.notes = notes;
     }
 
@@ -45,22 +45,6 @@ public class Animal {
         this.name = name;
     }
 
-    public boolean getIsCat() {
-        return isCat;
-    }
-
-    public void setIsCat(boolean isCat) {
-        this.isCat = isCat;
-    }
-
-    public boolean getIsMale() {
-        return isMale;
-    }
-
-    public void setIsMale(boolean male) {
-        this.isMale = male;
-    }
-
     public int getAge() {
         return age;
     }
@@ -77,17 +61,25 @@ public class Animal {
         this.notes = notes;
     }
 
+    public KindOfAnimal getKind() {
+        return kind;
+    }
+
+    public void setKind(KindOfAnimal kind) {
+        this.kind = kind;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return isCat == animal.isCat && isMale == animal.isMale && age == animal.age && Objects.equals(id, animal.id) && Objects.equals(name, animal.name) && Objects.equals(notes, animal.notes);
+        return age == animal.age && Objects.equals(id, animal.id) && Objects.equals(name, animal.name) && kind == animal.kind && Objects.equals(notes, animal.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, isCat, isMale, age, notes);
+        return Objects.hash(id, name, age, kind, notes);
     }
 
     @Override
@@ -95,9 +87,8 @@ public class Animal {
         return "Animal{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", isCat=" + isCat +
-                ", isMale=" + isMale +
                 ", age=" + age +
+                ", kind=" + kind +
                 ", notes='" + notes + '\'' +
                 '}';
     }

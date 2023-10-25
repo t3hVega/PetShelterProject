@@ -26,13 +26,31 @@ public class TelegramUpdateProcessor {
         String lastMessage = userRepository.findByChatId(chatId).getLastMessage();
         revert.setChatId(chatId);
         switch (lastMessage) {
+            case ("\uD83D\uDC31 Кошку"): {
+                revert = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
+                break;
+            }
+            case ("\uD83D\uDC36 Собаку"): {
+                revert = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC36 Собаку");
+                break;
+            }
             case ("ℹ\uFE0F Узнать информацию о приюте"): {
                 revert =  messageProcessor.shelterInfoMenu(chatId);
                 break;
             }
             case("❓ Как забрать животное из приюта"): {
-                if(isInCatShelter == true) revert = messageProcessor.catAdoptionAssistMenu(chatId);
+                if(isInCatShelter) revert = messageProcessor.catAdoptionAssistMenu(chatId);
                 else revert = messageProcessor.dogAdoptionAssistMenu(chatId);
+                break;
+            }
+            case("Введены данные"): {
+                revert =  messageProcessor.shelterInfoMenu(chatId);
+                userStatusUpdate(chatId, isInCatShelter,"ℹ\uFE0F Узнать информацию о приюте");
+                break;
+            }
+            case("\uD83D\uDC3E Прислать отчет о питомце"): {
+                revert = messageProcessor.reportMenu(chatId);
+                break;
             }
             default:
         }
@@ -46,7 +64,7 @@ public class TelegramUpdateProcessor {
         back.setChatId(chatId);
         switch (lastMessage) {
             case("❓ Как забрать животное из приюта"): {
-                if(isInCatShelter == true) {
+                if(isInCatShelter) {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
                     userStatusUpdate(chatId, isInCatShelter, "\uD83D\uDC31 Кошку");
                 }
@@ -56,7 +74,7 @@ public class TelegramUpdateProcessor {
                 }
             }
             case("ℹ\uFE0F Узнать информацию о приюте"): {
-                if(isInCatShelter == true) {
+                if(isInCatShelter) {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
                     userStatusUpdate(chatId, isInCatShelter, "\uD83D\uDC31 Кошку");
                 }
@@ -66,7 +84,7 @@ public class TelegramUpdateProcessor {
                 }
             }
             case("\uD83D\uDC3E Прислать отчет о питомце"): {
-                if(isInCatShelter == true) {
+                if(isInCatShelter) {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
                     userStatusUpdate(chatId, isInCatShelter, "\uD83D\uDC31 Кошку");
                 }
@@ -74,6 +92,7 @@ public class TelegramUpdateProcessor {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC36 Собаку");
                     userStatusUpdate(chatId, isInCatShelter, "\uD83D\uDC36 Собаку");
                 }
+                break;
             }
             default:
         }

@@ -3,11 +3,14 @@ package com.petshelterproject.telegrambot.messageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -220,6 +223,111 @@ public class TelegramMessageProcessor {
         );
         forcedApplyMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return forcedApplyMenuMessage;
+    }
+
+    public SendMessage applicationMenuFirstStage (Long chatId) {
+        logger.info("Открываем меню ввода имени " + chatId);
+        SendMessage applicationMenuFirstStageMessage = new SendMessage();
+        applicationMenuFirstStageMessage.setChatId(chatId.toString());
+        applicationMenuFirstStageMessage.setText("Введите имя:");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("⬅\uFE0F Вернуться в предыдущее меню")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow
+        );
+        applicationMenuFirstStageMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return applicationMenuFirstStageMessage;
+    }
+
+    public SendMessage applicationMenuSecondStage(Long chatId) {
+        logger.info("Открываем меню ввода имени " + chatId);
+        SendMessage applicationMenuFirstStageMessage = new SendMessage();
+        applicationMenuFirstStageMessage.setChatId(chatId.toString());
+        applicationMenuFirstStageMessage.setText("Введите данные:");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("⬅\uFE0F Вернуться в предыдущее меню")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow
+        );
+        applicationMenuFirstStageMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return applicationMenuFirstStageMessage;
+    }
+
+    public SendMessage adopterAlreadyExistsMenu(Long chatId) {
+        logger.info("Открываем меню для уже существующего пользователя " + chatId);
+        SendMessage adopterAlreadyExistsMenuMessage = new SendMessage();
+        adopterAlreadyExistsMenuMessage.setChatId(chatId.toString());
+        adopterAlreadyExistsMenuMessage.setText("Вы уже зарегистрированы. Желаете изменить данные?");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("✅ Да, изменить мои данные")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("❌ Нет, вернуться в предыдущее меню")
+        );
+
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow
+        );
+        adopterAlreadyExistsMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return adopterAlreadyExistsMenuMessage;
+    }
+
+    public SendMessage applicationSuccessfulMenu(Long chatId) {
+        logger.info("Открываем меню для зарегистрированного пользователя " + chatId);
+        SendMessage applicationSuccesfulMenuMessage = new SendMessage();
+        applicationSuccesfulMenuMessage.setChatId(chatId.toString());
+        applicationSuccesfulMenuMessage.setText("Поздравляем с регистрацией, скоро мы с вами свяжемся, желаете продолжить работу с ботом?");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("✅ Да")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("❌ Нет")
+        );
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow
+        );
+        applicationSuccesfulMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return applicationSuccesfulMenuMessage;
+    }
+
+    public SendMessage reportMenu(Long chatId) {
+        logger.info("Открываем меню заполнения отчета о питомце для чата " + chatId);
+        SendMessage reportMenuMessage = new SendMessage();
+        reportMenuMessage.setChatId(chatId.toString());
+        reportMenuMessage.setText("Не забудьте прикрепить фотографии к отчету!");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("⬅\uFE0F Вернуться в предыдущее меню")
+        );
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow
+        );
+        reportMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return reportMenuMessage;
+    }
+
+    public SendMessage thanksMenu(Long chatId) {
+        logger.info("Открываем благодарное меню для чата " + chatId);
+        SendMessage thanksMenuMessage = new SendMessage();
+        thanksMenuMessage.setChatId(chatId.toString());
+        thanksMenuMessage.setText("Благодарим за отчет! Желаете продолжить работу с ботом?");
+        List<KeyboardButton> firstRow = List.of(
+                new KeyboardButton("✅ Да")
+        );
+        List<KeyboardButton> secondRow = List.of(
+                new KeyboardButton("❌ Нет")
+        );
+        List<List<KeyboardButton>> buttonsToAdd = Arrays.asList(
+                firstRow,
+                secondRow
+        );
+        thanksMenuMessage.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
+        return thanksMenuMessage;
     }
 
 

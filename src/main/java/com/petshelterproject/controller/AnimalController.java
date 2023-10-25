@@ -1,6 +1,7 @@
 package com.petshelterproject.controller;
 
 import com.petshelterproject.model.Animal;
+import com.petshelterproject.model.KindOfAnimal;
 import com.petshelterproject.service.animal.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,14 +45,9 @@ public class AnimalController {
         animalService.deleteAnimal(id);
     }
 
-    @GetMapping("/by-kind/{isCat}")
-    public List<Animal> getAllByKind(@PathVariable boolean isCat) {
-        return animalService.getAllByKind(isCat);
-    }
-
-    @GetMapping("/by-gender/{isMale}")
-    public List<Animal> getAllByGender(@PathVariable boolean isMale) {
-        return animalService.getAllByGender(isMale);
+    @GetMapping("/by-kind/{kind}")
+    public List<Animal> getAllByKind(@PathVariable KindOfAnimal kind) {
+        return animalService.getAllByKind(kind);
     }
 
 }
