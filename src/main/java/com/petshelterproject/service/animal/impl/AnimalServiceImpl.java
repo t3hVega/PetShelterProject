@@ -12,18 +12,22 @@ import java.util.List;
 public class AnimalServiceImpl implements AnimalService {
 
     @Autowired
-    private final AnimalRepository animalRepository;
+    private static AnimalRepository animalRepository = null;
 
     public AnimalServiceImpl(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
     }
+
+    public static Object get() {
+        return null;
+    }
+
     @Override
     public Animal addAnimal(Animal animal) {
         return animalRepository.save(animal);
     }
 
-    @Override
-    public Animal getAnimal(Long id) {
+    public static Animal getAnimal(Long id) {
         return animalRepository.findById(id).get();
     }
 
@@ -38,13 +42,21 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public List<Animal> getAllByKind(boolean isCat) {
+    public List<Animal> getAllByKind(long isCat) {
         return animalRepository.findAllByIsCat(isCat);
     }
 
     @Override
-    public List<Animal> getAllByGender(boolean isMale) {
+    public List<Animal> getAllByGender(long isMale) {
         return animalRepository.findAllByIsMale(isMale);
     }
 
+    @Override
+    public Object getAll() {
+        return null;
+    }
+
+    public Object getAllByGender(long amount) {
+        return null;
+    }
 }

@@ -34,4 +34,8 @@ public class VolunteerServiceImpl implements VolunteerService {
     public void deleteVolunteer(Long id) {
         volunteerRepository.deleteById(id);
     }
+
+    public Object getAll() {
+        return null;
+    }
 }

@@ -45,7 +45,7 @@ public class AnimalController {
     }
 
     @GetMapping("/by-kind/{isCat}")
-    public List<Animal> getAllByKind(@PathVariable boolean isCat) {
+    public List<Animal> getAllByKind(@PathVariable long isCat) {
         return animalService.getAllByKind(isCat);
     }
 
@@ -54,5 +54,8 @@ public class AnimalController {
         return animalService.getAllByGender(isMale);
     }
 
+    public Object getAll() {
+        return null;
+    }
 }
 

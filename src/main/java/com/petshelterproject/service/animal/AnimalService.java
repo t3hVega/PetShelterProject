@@ -3,7 +3,6 @@ package com.petshelterproject.service.animal;
 import com.petshelterproject.model.Animal;
 
 
-import java.util.Collection;
 import java.util.List;
 
 public interface AnimalService {
@@ -18,6 +17,8 @@ public interface AnimalService {
     Animal getAnimal(Long id);
     Animal editAnimal(Animal animal);
     void deleteAnimal(Long id);
-    List<Animal> getAllByKind(boolean isCat);
-    List<Animal> getAllByGender(boolean isMale);
+    List<Animal> getAllByKind(long isCat);
+    List<Animal> getAllByGender(long isMale);
+
+    Object getAll();
 }

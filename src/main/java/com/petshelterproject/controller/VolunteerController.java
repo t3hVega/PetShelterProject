@@ -40,4 +40,12 @@ public class VolunteerController {
     public void delete(@PathVariable Long id) {
         volunteerService.deleteVolunteer(id);
     }
+
+    public Object getAll() {
+        return null;
+    }
+
+    public Object getVolunteer(long amount) {
+        return null;
+    }
 }

@@ -17,7 +17,7 @@ public class Animal {
     private int age;
     private String notes;
 
-    public Animal(String name, boolean isCat, boolean isMale, int age, String notes) {
+    public Animal() {
         this.name = name;
         this.isCat = isCat;
         this.isMale = isMale;
@@ -25,7 +25,7 @@ public class Animal {
         this.notes = notes;
     }
 
-    public Animal() {
+    public Animal(String грета, String female, int i, String dog) {
 
     }
 
@@ -100,5 +100,13 @@ public class Animal {
                 ", age=" + age +
                 ", notes='" + notes + '\'' +
                 '}';
+    }
+
+    public String getKindOfAnimal() {
+        return null;
+    }
+
+    public String getTypeOfAnimal() {
+        return null;
     }
 }
