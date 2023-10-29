@@ -18,7 +18,7 @@ public interface AnimalService {
     Animal editAnimal(Animal animal);
     void deleteAnimal(Long id);
     List<Animal> getAllByKind(long isCat);
-    List<Animal> getAllByGender(long isMale);
+    List<Animal> getAllByGender(boolean isMale);
 
     Object getAll();
 }

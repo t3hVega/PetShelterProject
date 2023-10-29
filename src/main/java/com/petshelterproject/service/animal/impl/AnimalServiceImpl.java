@@ -27,7 +27,7 @@ public class AnimalServiceImpl implements AnimalService {
         return animalRepository.save(animal);
     }
 
-    public static Animal getAnimal(Long id) {
+    public Animal getAnimal(Long id) {
         return animalRepository.findById(id).get();
     }
 
@@ -47,7 +47,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public List<Animal> getAllByGender(long isMale) {
+    public List<Animal> getAllByGender(boolean isMale) {
         return animalRepository.findAllByIsMale(isMale);
     }
 

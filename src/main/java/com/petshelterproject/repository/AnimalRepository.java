@@ -12,6 +12,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
      * Метод возвращает всех животных по нужному типу
      * @return
      */
-    List<Animal> findAllByIsCat(boolean isCat);
-    List<Animal> findAllByIsMale(boolean isMale);
+    List<Animal> findAllByIsCat(long isCat);
+    List<Animal> findAllByIsMale(long isMale);
 }
