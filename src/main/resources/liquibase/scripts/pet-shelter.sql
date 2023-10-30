@@ -27,6 +27,7 @@ create table if not exists adopters
     name text,
     data text,
     score int,
+    last_message text,
     animal_id bigint
 );
 

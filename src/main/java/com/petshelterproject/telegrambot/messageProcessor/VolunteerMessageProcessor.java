@@ -101,7 +101,7 @@ public class VolunteerMessageProcessor {
         + "Имя: " + adopter.getName() + "\n"
         + "Контактные данные: " + adopter.getData() + "\n"
         + "Рейтинг: " + adopter.getScore() + "\n"
-        + "Питомец: " + animal.getName() + ", возраст: " + animal.getAge() + ", " + animal.getKind().getCode() + ", примечения: " + animal.getNotes());
+        + "Питомец: " + animal.getName() + ", возраст: " + animal.getAge() + ", " + animal.getKind().getCode().toLowerCase() + ", примечения: " + animal.getNotes());
         List<KeyboardButton> firstRow = List.of(
                 new KeyboardButton("Одобрить")
         );
@@ -115,6 +115,9 @@ public class VolunteerMessageProcessor {
                 new KeyboardButton("Продлить испытательный срок на месяц")
         );
         List<KeyboardButton> fifthRow = List.of(
+                new KeyboardButton("Оставить сообщение хозяину")
+        );
+        List<KeyboardButton> sixthRow = List.of(
                 new KeyboardButton("Вернуться в главное меню")
         );
         List<List<KeyboardButton>> buttonsToAdd = List.of(
@@ -122,7 +125,8 @@ public class VolunteerMessageProcessor {
                 secondRow,
                 thirdRow,
                 fourthRow,
-                fifthRow
+                fifthRow,
+                sixthRow
         );
         adopterApprovalMenu.setReplyMarkup(replyKeyboardMarkup(buttonsToAdd));
         return adopterApprovalMenu;

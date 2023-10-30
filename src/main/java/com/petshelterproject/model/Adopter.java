@@ -12,6 +12,7 @@ public class Adopter {
     private String name;
     private String data;
     private Integer score;
+    private String lastMessage;
 
     @OneToOne
     @JoinColumn(name = "animal_id")
@@ -53,6 +54,14 @@ public class Adopter {
         this.score = score;
     }
 
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public void setLastMessage(String lastMessage) {
+        this.lastMessage = lastMessage;
+    }
+
     public Animal getAnimal() {
         return animal;
     }
@@ -66,12 +75,12 @@ public class Adopter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Adopter adopter = (Adopter) o;
-        return Objects.equals(chatId, adopter.chatId) && Objects.equals(name, adopter.name) && Objects.equals(data, adopter.data) && Objects.equals(score, adopter.score) && Objects.equals(animal, adopter.animal);
+        return Objects.equals(chatId, adopter.chatId) && Objects.equals(name, adopter.name) && Objects.equals(data, adopter.data) && Objects.equals(score, adopter.score) && Objects.equals(lastMessage, adopter.lastMessage) && Objects.equals(animal, adopter.animal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chatId, name, data, score, animal);
+        return Objects.hash(chatId, name, data, score, lastMessage, animal);
     }
 
     @Override
@@ -81,6 +90,7 @@ public class Adopter {
                 ", name='" + name + '\'' +
                 ", data='" + data + '\'' +
                 ", score=" + score +
+                ", lastMessage='" + lastMessage + '\'' +
                 ", animal=" + animal +
                 '}';
     }
