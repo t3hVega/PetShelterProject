@@ -1,9 +1,11 @@
 package com.petshelterproject.controller;
 
 import com.petshelterproject.model.Animal;
+import com.petshelterproject.repository.ReportPhotoRepository;
 import com.petshelterproject.service.adopter.AdopterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 
 @RestController
 @RequestMapping("/adopter")
@@ -27,4 +29,5 @@ public class AdopterController {
     public Animal getAnimal(Long chatId) {
         return adopterService.getAnimal(chatId);
     }
+
 }

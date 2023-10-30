@@ -2,6 +2,8 @@ package com.petshelterproject.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,21 +15,27 @@ public class Report {
     private Long id;
     private Long chatId;
     private String text;
-    @OneToMany
+    private LocalDate date;
+    private boolean approved;
+    @OneToOne
     @JoinColumn(name = "report_photo_id")
-    private List<ReportPhoto> reportPhoto;
+    private ReportPhoto reportPhoto;
+    @OneToOne
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
 
-    public Report(Long id, Long chatId, String text, List<ReportPhoto> reportPhoto) {
+    public Report(Long id, Long chatId, String text, LocalDate date, ReportPhoto reportPhoto, Animal animal) {
         this.id = id;
         this.chatId = chatId;
         this.text = text;
+        this.date = date;
         this.reportPhoto = reportPhoto;
+        this.animal = animal;
     }
 
     public Report() {
 
     }
-
 
     public Long getId() {
         return id;
@@ -53,28 +61,50 @@ public class Report {
         this.text = text;
     }
 
-    public List<ReportPhoto> getReportPhoto() {
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public ReportPhoto getReportPhoto() {
         return reportPhoto;
     }
 
-    public void setReportPhoto(List<ReportPhoto> reportPhoto) {
+    public void setReportPhoto(ReportPhoto reportPhoto) {
         this.reportPhoto = reportPhoto;
     }
 
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Report report = (Report) o;
-        return Objects.equals(id, report.id) && Objects.equals(chatId, report.chatId) && Objects.equals(text, report.text) && Objects.equals(reportPhoto, report.reportPhoto);
+        return approved == report.approved && Objects.equals(id, report.id) && Objects.equals(chatId, report.chatId) && Objects.equals(text, report.text) && Objects.equals(date, report.date) && Objects.equals(reportPhoto, report.reportPhoto) && Objects.equals(animal, report.animal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, text, reportPhoto);
+        return Objects.hash(id, chatId, text, date, approved, reportPhoto, animal);
     }
-
 
     @Override
     public String toString() {
@@ -82,7 +112,10 @@ public class Report {
                 "id=" + id +
                 ", chatId=" + chatId +
                 ", text='" + text + '\'' +
+                ", date=" + date +
+                ", approved=" + approved +
                 ", reportPhoto=" + reportPhoto +
+                ", animal=" + animal +
                 '}';
     }
 }

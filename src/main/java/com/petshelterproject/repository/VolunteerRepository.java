@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
+    Volunteer findByChatId(Long chatId);
+    void deleteByChatId(Long chatId);
 }
