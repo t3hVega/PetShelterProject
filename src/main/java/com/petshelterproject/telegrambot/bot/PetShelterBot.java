@@ -813,7 +813,7 @@ public class PetShelterBot extends TelegramLongPollingBot {
                                     "Не закреплен питомец");
                             break;
                         }
-                        if(reportRepository.findAll().isEmpty()) {
+                        if(reportRepository.findAllByChatId(chatId).isEmpty()) {
                             try {
                                 execute(userMessageProcessor.reportMenu(chatId));
                             } catch (TelegramApiException e) {
