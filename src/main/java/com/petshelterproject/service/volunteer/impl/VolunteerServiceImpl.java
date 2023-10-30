@@ -21,8 +21,8 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public Volunteer getVolunteer(Long id) {
-        return volunteerRepository.findById(id).get();
+    public Volunteer getVolunteer(Long chatId) {
+        return volunteerRepository.findByChatId(chatId);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     }
 
     @Override
-    public void deleteVolunteer(Long id) {
-        volunteerRepository.deleteById(id);
+    public void deleteVolunteer(Long chatId) {
+        volunteerRepository.deleteByChatId(chatId);
     }
 }

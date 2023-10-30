@@ -11,17 +11,11 @@ public class Adopter {
     private Long chatId;
     private String name;
     private String data;
+    private Integer score;
 
     @OneToOne
     @JoinColumn(name = "animal_id")
     private Animal animal;
-
-    public Adopter(Long chatId, String name, String data, Animal animal) {
-        this.chatId = chatId;
-        this.name = name;
-        this.data = data;
-        this.animal = animal;
-    }
 
     public Adopter() {
 
@@ -51,6 +45,14 @@ public class Adopter {
         this.data = data;
     }
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
     public Animal getAnimal() {
         return animal;
     }
@@ -64,12 +66,12 @@ public class Adopter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Adopter adopter = (Adopter) o;
-        return Objects.equals(chatId, adopter.chatId) && Objects.equals(name, adopter.name) && Objects.equals(data, adopter.data) && Objects.equals(animal, adopter.animal);
+        return Objects.equals(chatId, adopter.chatId) && Objects.equals(name, adopter.name) && Objects.equals(data, adopter.data) && Objects.equals(score, adopter.score) && Objects.equals(animal, adopter.animal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chatId, name, data, animal);
+        return Objects.hash(chatId, name, data, score, animal);
     }
 
     @Override
@@ -78,6 +80,7 @@ public class Adopter {
                 "chatId=" + chatId +
                 ", name='" + name + '\'' +
                 ", data='" + data + '\'' +
+                ", score=" + score +
                 ", animal=" + animal +
                 '}';
     }

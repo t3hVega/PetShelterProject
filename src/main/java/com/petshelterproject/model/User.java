@@ -9,13 +9,15 @@ import java.util.Objects;
 public class User {
     @Id
     private Long chatId;
-    private boolean isInCatShelter;
+    private boolean inCatShelter;
     private String lastMessage;
+    private boolean active;
 
-    public User(Long chatId, boolean isInCatShelter, String lastMessage) {
+    public User(Long chatId, boolean inCatShelter, String lastMessage, boolean active) {
         this.chatId = chatId;
-        this.isInCatShelter = isInCatShelter;
+        this.inCatShelter = inCatShelter;
         this.lastMessage = lastMessage;
+        this.active = active;
     }
 
     public User() {
@@ -30,12 +32,12 @@ public class User {
         this.chatId = chatId;
     }
 
-    public boolean getIsInCatShelter() {
-        return isInCatShelter;
+    public boolean isInCatShelter() {
+        return inCatShelter;
     }
 
-    public void setIsInCatShelter(boolean isInCatShelter) {
-        isInCatShelter = isInCatShelter;
+    public void setInCatShelter(boolean inCatShelter) {
+        this.inCatShelter = inCatShelter;
     }
 
     public String getLastMessage() {
@@ -46,13 +48,12 @@ public class User {
         this.lastMessage = lastMessage;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "chatId=" + chatId +
-                ", isInCatShelter=" + isInCatShelter +
-                ", lastMessage='" + lastMessage + '\'' +
-                '}';
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
@@ -60,11 +61,21 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return isInCatShelter == user.isInCatShelter && Objects.equals(chatId, user.chatId) && Objects.equals(lastMessage, user.lastMessage);
+        return inCatShelter == user.inCatShelter && active == user.active && Objects.equals(chatId, user.chatId) && Objects.equals(lastMessage, user.lastMessage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(chatId, isInCatShelter, lastMessage);
+        return Objects.hash(chatId, inCatShelter, lastMessage, active);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "chatId=" + chatId +
+                ", inCatShelter=" + inCatShelter +
+                ", lastMessage='" + lastMessage + '\'' +
+                ", active=" + active +
+                '}';
     }
 }
