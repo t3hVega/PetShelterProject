@@ -108,7 +108,11 @@ public class TelegramUpdateProcessor {
                     ("Не закреплен питомец"),
                     ("Введено имя"),
                     ("\uD83D\uDCDD Внести контактные данные для связи"),
-                    ("Оставить сообщение хозяину"): {
+                    ("Оставить сообщение хозяину"),
+                    ("Одобрить"),
+                    ("Отклонить"),
+                    ("Продлить испытательный срок на 14 дней"),
+                    ("Продлить испытательный срок на месяц"): {
                 if(isInCatShelter) {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
                     userStatusUpdate(chatId, true, "\uD83D\uDC31 Кошку");

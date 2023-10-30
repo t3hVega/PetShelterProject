@@ -828,6 +828,7 @@ public class PetShelterBot extends TelegramLongPollingBot {
                         if (reportRepository
                                 .findAll()
                                 .stream()
+                                .filter(report -> report.getChatId().equals(chatId))
                                 .findAny()
                                 .get()
                                 .getDate()
