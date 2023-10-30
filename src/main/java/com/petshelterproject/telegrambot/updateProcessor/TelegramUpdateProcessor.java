@@ -1,6 +1,7 @@
 package com.petshelterproject.telegrambot.updateProcessor;
 
 import com.petshelterproject.model.User;
+import com.petshelterproject.repository.AdopterRepository;
 import com.petshelterproject.repository.UserRepository;
 import com.petshelterproject.telegrambot.messageProcessor.UserMessageProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class TelegramUpdateProcessor {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AdopterRepository adopterRepository;
     private final UserMessageProcessor messageProcessor;
 
     public TelegramUpdateProcessor(UserMessageProcessor messageProcessor) {
@@ -83,6 +86,10 @@ public class TelegramUpdateProcessor {
                 revert = enterData(chatId, "Волонтеры приняли решение продлить ваш испытательный срок на месяц", "Вернуться в меню");
                 break;
             }
+            case ("Оставить сообщение хозяину"): {
+                revert = enterData(chatId, adopterRepository.findByChatId(chatId).getLastMessage(), "Вернуться в меню");
+                break;
+            }
             default:
         }
         return revert;
@@ -94,13 +101,14 @@ public class TelegramUpdateProcessor {
         String lastMessage = userRepository.findByChatId(chatId).getLastMessage();
         back.setChatId(chatId);
         switch (lastMessage) {
-            case("❓ Как забрать животное из приюта"),
-                    ("ℹ\uFE0F Узнать информацию о приюте"),
+            case("ℹ\uFE0F Узнать информацию о приюте"),
+                    ("❓ Как забрать животное из приюта"),
                     ("🐾 Прислать отчет о питомце"),
                     ("Прислан отчет"),
                     ("Не закреплен питомец"),
                     ("Введено имя"),
-                    ("\uD83D\uDCDD Внести контактные данные для связи"): {
+                    ("\uD83D\uDCDD Внести контактные данные для связи"),
+                    ("Оставить сообщение хозяину"): {
                 if(isInCatShelter) {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
                     userStatusUpdate(chatId, true, "\uD83D\uDC31 Кошку");
@@ -109,6 +117,16 @@ public class TelegramUpdateProcessor {
                     back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC36 Собаку");
                     userStatusUpdate(chatId, false, "\uD83D\uDC36 Собаку");
                 }
+                break;
+            }
+            case ("\uD83D\uDC31 Кошку"): {
+                back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку");
+                userStatusUpdate(chatId, true, "\uD83D\uDC31 Кошку");
+                break;
+            }
+            case ("\uD83D\uDC36 Собаку"): {
+                back = messageProcessor.secondStageMenu(chatId, "\uD83D\uDC36 Собаку");
+                userStatusUpdate(chatId, false, "\uD83D\uDC36 Собаку");
                 break;
             }
             default:

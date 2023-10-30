@@ -255,6 +255,18 @@ public class PetShelterBot extends TelegramLongPollingBot {
                         }
                         volunteerStatusUpdate(chatId, "Вынесено решение");
                     }
+                    case ("Оставить сообщение хозяину"): {
+                        Long chatIdToSearch = volunteerRepository.findByChatId(chatId).getChatIdToSearch();
+                        User user = userRepository.findByChatId(chatIdToSearch);
+                        user.setLastMessage(updateMessageText);
+                        userRepository.save(user);
+                        try {
+                            execute(enterData(chatId, "Ввести сообщение для хозяина:", "Вернуться в главное меню"));
+                        } catch (TelegramApiException e) {
+                            throw new RuntimeException(e);
+                        }
+                        volunteerStatusUpdate(chatId, updateMessageText);
+                    }
                     default:
                 }
 
@@ -422,6 +434,22 @@ public class PetShelterBot extends TelegramLongPollingBot {
                         }
                         break;
                     }
+                    case ("Оставить сообщение хозяину"): {
+                        if (!updateMessageText.equals("Оставить сообщение хозяину") && !updateMessageText.equals("Ввести сообщение для хозяина:")) {
+                            Volunteer volunteer = volunteerRepository.findByChatId(chatId);
+                            Long chatIdToSearch = volunteer.getChatIdToSearch();
+                            Adopter adopter = adopterRepository.findByChatId(chatIdToSearch);
+                            adopter.setLastMessage(updateMessageText);
+                            adopterRepository.save(adopter);
+                            volunteer.setLastMessage("Введено сообщение хозяину");
+                            volunteerRepository.save(volunteer);
+                            try {
+                                execute(enterData(chatId, "Сообщение отправлено", "Вернуться в главное меню"));
+                            } catch (TelegramApiException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
                     default:
                 }
             }
@@ -438,20 +466,10 @@ public class PetShelterBot extends TelegramLongPollingBot {
                         break;
                     }
                     case ("Вернуться в меню"): {
-                        if (userRepository.findByChatId(chatId).isInCatShelter()) {
-                            try {
-                                execute(userMessageProcessor.secondStageMenu(chatId, "\uD83D\uDC31 Кошку"));
-                            } catch (TelegramApiException e) {
-                                throw new RuntimeException(e);
-                            }
-                            userStatusUpdate(chatId, true, "\uD83D\uDC31 Кошку");
-                        } else {
-                            try {
-                                execute(userMessageProcessor.secondStageMenu(chatId, "\uD83D\uDC36 Собаку"));
-                            } catch (TelegramApiException e) {
-                                throw new RuntimeException(e);
-                            }
-                            userStatusUpdate(chatId, false, "\uD83D\uDC36 Собаку");
+                        try {
+                            execute(updateProcessor.back(chatId));
+                        } catch (TelegramApiException e) {
+                            throw new RuntimeException(e);
                         }
                         break;
                     }
